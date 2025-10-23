@@ -193,12 +193,55 @@ All dependencies are listed in [requirements.txt](file:///d:/project%202/A_I-Age
 - python-dotenv - Environment variable management
 - Werkzeug - Password hashing and security utilities
 
+## Vercel Deployment
+
+This application can be deployed to Vercel with the following steps:
+
+1. **Install Vercel CLI** (optional but recommended):
+   ```bash
+   npm install -g vercel
+   ```
+
+2. **Deploy using Vercel CLI**:
+   ```bash
+   vercel --prod
+   ```
+
+3. **Or deploy using Git integration**:
+   - Push your code to a GitHub repository
+   - Connect the repository to Vercel
+   - Vercel will automatically detect the Flask application and deploy it
+
+### Vercel Configuration
+
+The project includes a [vercel.json](file:///d:/project%202/A_I-Agent-master/vercel.json) file that configures the deployment:
+- Uses the `@vercel/python` runtime
+- Routes all requests to the main [app.py](file:///d:/project%202/A_I-Agent-master/app.py) file
+- Automatically installs dependencies from [requirements.txt](file:///d:/project%202/A_I-Agent-master/requirements.txt)
+
+### Environment Variables on Vercel
+
+When deploying to Vercel, you'll need to set the following environment variables in the Vercel dashboard:
+- `MONGO_URI` - Your MongoDB connection string
+- `DB_NAME` - Your database name
+- `SENDER_EMAIL` - Your sender email address
+- `SENDER_NAME` - Your sender name
+- `BREVO_API_KEY` - Your Brevo API key
+- `SECRET_KEY` - A secure secret key for Flask sessions
+- `JWT_SECRET` - A secure JWT secret key
+
+Note: Do not use the values from [.env.example](file:///d:/project%202/A_I-Agent-master/.env.example) in production. Generate secure random values for `SECRET_KEY` and `JWT_SECRET`.
+
 ## Troubleshooting
 
 1. **Python not found**: Make sure Python is installed and added to your PATH
 2. **Import errors**: Ensure all dependencies are installed with `pip install -r requirements.txt`
 3. **Database connection issues**: Verify MongoDB is running and credentials in the [.env](file:///d:/project%202/A_I-Agent-master/.env) file
 4. **Email sending failures**: Check email configuration in the [.env](file:///d:/project%202/A_I-Agent-master/.env) file
+5. **Vercel deployment issues**: 
+   - Ensure [vercel.json](file:///d:/project%202/A_I-Agent-master/vercel.json) is in the root directory
+   - Check that all required environment variables are set in the Vercel dashboard
+   - Verify that your MongoDB connection string works from Vercel (may need to whitelist Vercel IPs)
 
 ## License
 

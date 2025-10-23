@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agents Hub - Smart Automation Solutions</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #6c757d;
+            --dark-color: #212529;
+            --light-color: #f8f9fa;
+        }
+        
+        body {
+            background-color: #f7f9fc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .hero {
+            padding: 100px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #0d6efd, #0b5ed7);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
+            background-size: cover;
+        }
+        
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonial-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .pricing-card {
+            border: 2px solid rgba(13, 110, 253, 0.2);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            border-color: var(--primary-color);
+        }
+        
+        .pricing-card.popular {
+            border: 2px solid var(--primary-color);
+            position: relative;
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .nav-pills .nav-link.active {
+            background-color: var(--primary-color);
+        }
+        
+        .footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 40px 0;
+        }
+        
+        .footer a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer a:hover {
+            color: white;
+        }
+        
+        .social-icon {
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+        
+        .btn-animate {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-animate::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+        
+        .btn-animate:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(50, 50);
+                opacity: 0;
+            }
+        }
+        
+        /* Responsive Design Enhancements */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 15px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            
+            .feature-icon {
+                font-size: 1.5rem;
+            }
+            
+            .footer .col-lg-3 {
+                margin-bottom: 30px;
+            }
+            
+            .text-center.text-md-start,
+            .text-center.text-md-end {
+                text-align: center !important;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                padding: 40px 10px;
+            }
+            
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            
+            .hero p {
+                font-size: 0.9rem;
+            }
+            
+            .display-3 {
+                font-size: 2rem;
+            }
+            
+            .lead {
+                font-size: 0.9rem;
+            }
+            
+            .feature-icon {
+                font-size: 1.2rem;
+            }
+            
+            h4 {
+                font-size: 1rem;
+            }
+            
+            .footer {
+                padding: 30px 0;
+            }
+            
+            .footer h5 {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <i class="bi bi-robot me-2"></i>AI Agents Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url_for('index') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('course_agent') }}">Course Agent</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    {% if is_logged_in %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('home') }}">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('logout_user') }}">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('login_user') }}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('signup_user') }}">Sign Up</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="display-3 fw-bold mb-4">Transform Your Learning with AI</h1>
+            <p class="lead mb-5">Personalized courses delivered daily to your inbox. Learn any skill at your own pace with our intelligent automation agents.</p>
+            <div class="mt-4">
+                {% if is_logged_in %}
+                    <a href="{{ url_for('course_agent') }}" class="btn btn-light btn-lg me-3 btn-animate">Start Learning</a>
+                {% else %}
+                    <a href="{{ url_for('signup_user') }}" class="btn btn-light btn-lg me-3 btn-animate">Get Started</a>
+                    <a href="{{ url_for('login_user') }}" class="btn btn-outline-light btn-lg btn-animate">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="text-center p-4">
+                        <div class="feature-icon">
+                            <i class="bi bi-book"></i>
+                        </div>
+                        <h4>Personalized Learning</h4>
+                        <p class="text-muted">AI tailors content to your learning style and pace.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="text-center p-4">
+                        <div class="feature-icon">
+                            <i class="bi bi-alarm"></i>
+                        </div>
+                        <h4>Daily Lessons</h4>
+                        <p class="text-muted">Receive bite-sized lessons delivered to your inbox.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="text-center p-4">
+                        <div class="feature-icon">
+                            <i class="bi bi-graph-up"></i>
+                        </div>
+                        <h4>Progress Tracking</h4>
+                        <p class="text-muted">Monitor your learning journey with detailed analytics.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">How It Works</h2>
+                <p class="lead text-muted">Start learning in just a few simple steps</p>
+            </div>
+            
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="pe-md-5">
+                        <div class="d-flex mb-4">
+                            <div class="me-4">
+                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                    <span class="fw-bold">1</span>
+                                </div>
+                            </div>
+                            <div>
+                                <h4>Choose Your Course</h4>
+                                <p class="text-muted">Select from our library of AI-curated courses or create your own.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex mb-4">
+                            <div class="me-4">
+                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                    <span class="fw-bold">2</span>
+                                </div>
+                            </div>
+                            <div>
+                                <h4>Set Your Schedule</h4>
+                                <p class="text-muted">Choose when and how often you want to receive lessons.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex">
+                            <div class="me-4">
+                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                    <span class="fw-bold">3</span>
+                                </div>
+                            </div>
+                            <div>
+                                <h4>Start Learning</h4>
+                                <p class="text-muted">Receive daily lessons and track your progress.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-4 bg-white rounded shadow">
+                        <h4>Sample Lesson</h4>
+                        <p><strong>Today's Topic: Introduction to Machine Learning</strong></p>
+                        <p>Machine learning is a subset of artificial intelligence that enables computers to learn and make decisions from data...</p>
+                        <button class="btn btn-primary">Continue Reading</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 mb-4 mb-lg-0">
+                    <h5 class="text-white mb-4">
+                        <i class="bi bi-robot me-2"></i>AI Agents Hub
+                    </h5>
+                    <p>Empowering individuals and businesses with intelligent automation solutions.</p>
+                    <div class="mt-4">
+                        <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-github"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-white mb-4">Products</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="footer-link" data-title="Course Automation" data-content="Our Course Automation agent helps you learn any skill through daily email lessons. Personalize your learning path and receive bite-sized lessons that fit your schedule.">Course Automation</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link" data-title="Task Assistant" data-content="Stay organized and productive with our Task Assistant agent. Manage your to-do lists, set reminders, and track your habits with intelligent automation.">Task Assistant</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link" data-title="Writing Assistant" data-content="Generate high-quality content effortlessly with our Writing Assistant agent. From blog posts to social media updates, get AI-powered writing suggestions and content creation.">Writing Assistant</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link" data-title="Data Analysis" data-content="Unlock insights from your data with our Data Analysis agent. Automate data processing, create visualizations, and generate reports with natural language queries.">Data Analysis</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link" data-title="All Agents" data-content="Explore our complete collection of AI agents designed to automate various aspects of your personal and professional life. Each agent is specialized for specific tasks and can be customized to your needs.">All Agents</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-white mb-4">Resources</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="footer-link" data-title="Documentation" data-content="Comprehensive guides and tutorials to help you get the most out of our AI agents. Learn setup, configuration, and advanced usage techniques.">Documentation</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link" data-title="API Reference" data-content="Detailed technical documentation for developers who want to integrate our AI agents into their applications or build custom solutions.">API Reference</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link" data-title="Tutorials" data-content="Step-by-step video and text tutorials covering everything from basic setup to advanced automation workflows.">Tutorials</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link" data-title="Blog" data-content="Stay updated with the latest news, tips, and insights about AI automation. Read success stories and learn best practices from our community.">Blog</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link" data-title="Community" data-content="Connect with other users, share your experiences, and get help from our community of AI enthusiasts and experts.">Community</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">Company</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="footer-link" data-title="About Us" data-content="We are a team of AI enthusiasts dedicated to making intelligent automation accessible to everyone. Our mission is to empower individuals and businesses with AI-powered solutions.">About Us</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link" data-title="Careers" data-content="Join our growing team and help shape the future of AI automation. We're looking for talented individuals who are passionate about artificial intelligence and its applications.">Careers</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link" data-title="Contact" data-content="Get in touch with our team for support, partnerships, or general inquiries. We'd love to hear from you and help you get started with our AI agents.">Contact</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link" data-title="Privacy Policy" data-content="Learn how we collect, use, and protect your personal information. We are committed to safeguarding your privacy and maintaining the security of your data.">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link" data-title="Terms of Service" data-content="Our terms and conditions of service. By using our platform, you agree to these terms which govern your access and use of our AI agents.">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <hr class="mt-4 mb-4" style="border-color: rgba(255,255,255,0.1);">
+            
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2025 AI Agents Hub. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0">Made with <i class="bi bi-heart-fill text-danger"></i> for AI enthusiasts</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Footer Link Detail Modal -->
+    <div id="footer-detail-modal" class="modal fade" tabindex="-1" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="footer-detail-title">Link Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="footer-detail-content">Details about this link will appear here.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Footer link detail functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const footerLinks = document.querySelectorAll('.footer-link');
+            const detailModal = document.getElementById('footer-detail-modal');
+            const detailTitle = document.getElementById('footer-detail-title');
+            const detailContent = document.getElementById('footer-detail-content');
+            
+            footerLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const title = this.getAttribute('data-title');
+                    const content = this.getAttribute('data-content');
+                    
+                    detailTitle.textContent = title;
+                    detailContent.textContent = content;
+                    
+                    // Show the modal using Bootstrap's modal API
+                    const modal = new bootstrap.Modal(detailModal);
+                    modal.show();
+                });
+            });
+        });
+    </script>
+</body>
+</html>

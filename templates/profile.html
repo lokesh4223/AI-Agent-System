@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile | AI Agents Hub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #6c757d;
+            --dark-color: #212529;
+            --light-color: #f8f9fa;
+        }
+        
+        body {
+            background-color: #f7f9fc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .profile-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .profile-header {
+            background: linear-gradient(135deg, #0d6efd, #0b5ed7);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 3rem;
+            color: #0d6efd;
+        }
+        
+        .stat-card {
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-icon {
+            font-size: 2rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+        }
+        
+        .activity-item {
+            border-left: 3px solid var(--primary-color);
+            padding-left: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .navbar-nav .nav-link {
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        
+        .navbar-nav .nav-link:hover {
+            color: #ffffff;
+            transform: scale(1.05);
+        }
+        
+        .user-menu {
+            display: block !important;
+        }
+        
+        @media (max-width: 768px) {
+            .profile-header {
+                padding: 20px;
+            }
+            
+            .profile-img {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{{ url_for('home') }}">
+                <i class="bi bi-robot me-2"></i>AI Agents Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('home') }}#hero">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('home') }}#agents">Agents</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('home') }}#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('home') }}#pricing">Pricing</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <div class="user-menu">
+                        <div class="dropdown">
+                            <button class="btn btn-outline-light dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown">
+                                <i class="bi bi-person-circle me-1"></i>
+                                <span class="user-email">{{ user.email if user.email != 'N/A' else '' }}</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="{{ url_for('user_profile') }}">Profile</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('home') }}">Dashboard</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item logout-btn" href="{{ url_for('logout_user') }}">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Content -->
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="profile-card mb-4">
+                    <div class="profile-header">
+                        <div class="profile-img">
+                            <i class="bi bi-person-fill"></i>
+                        </div>
+                        <h2>{{ user.name }}</h2>
+                        <p class="mb-0">{{ user.email }}</p>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <h5 class="mb-3">Account Information</h5>
+                                <div class="mb-3">
+                                    <small class="text-muted">Name</small>
+                                    <p class="mb-2">{{ user.name }}</p>
+                                </div>
+                                <div class="mb-3">
+                                    <small class="text-muted">Email Address</small>
+                                    <p class="mb-2">{{ user.email }}</p>
+                                </div>
+                                <div class="mb-3">
+                                    <small class="text-muted">Account Status</small>
+                                    <p class="mb-2">
+                                        <span class="badge bg-{{ 'success' if user.status == 'verified' else 'warning' }}">
+                                            {{ user.status.title() }}
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="mb-3">
+                                    <small class="text-muted">Member Since</small>
+                                    <p class="mb-2">{{ user.member_since }}</p>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <h5 class="mb-3">Account Statistics</h5>
+                                <div class="row g-3">
+                                    <div class="col-12">
+                                        <div class="stat-card bg-light p-3 h-100">
+                                            <div class="d-flex align-items-center">
+                                                <div class="stat-icon bg-primary text-white me-3">
+                                                    <i class="bi bi-robot"></i>
+                                                </div>
+                                                <div>
+                                                    <h6 class="mb-0">Active Agents</h6>
+                                                    <p class="mb-0 text-muted">0</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-12">
+                                        <div class="stat-card bg-light p-3 h-100">
+                                            <div class="d-flex align-items-center">
+                                                <div class="stat-icon bg-success text-white me-3">
+                                                    <i class="bi bi-check-circle"></i>
+                                                </div>
+                                                <div>
+                                                    <h6 class="mb-0">Tasks Completed</h6>
+                                                    <p class="mb-0 text-muted">0</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-12">
+                                        <div class="stat-card bg-light p-3 h-100">
+                                            <div class="d-flex align-items-center">
+                                                <div class="stat-icon bg-info text-white me-3">
+                                                    <i class="bi bi-calendar"></i>
+                                                </div>
+                                                <div>
+                                                    <h6 class="mb-0">Days Active</h6>
+                                                    <p class="mb-0 text-muted">0</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <h5 class="mb-3">Recent Activity</h5>
+                            <div class="activity-item">
+                                <h6 class="mb-1">Account Created</h6>
+                                <p class="text-muted mb-0 small">{{ user.member_since }}</p>
+                            </div>
+                            <div class="activity-item">
+                                <h6 class="mb-1">Email Verified</h6>
+                                <p class="text-muted mb-0 small">Your email was verified during registration</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4 text-center">
+                            <a href="{{ url_for('home') }}" class="btn btn-primary">
+                                <i class="bi bi-arrow-left me-2"></i>Back to Dashboard
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white mt-5">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2025 AI Agents Hub. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0">Made with <i class="bi bi-heart-fill text-danger"></i> for AI enthusiasts</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

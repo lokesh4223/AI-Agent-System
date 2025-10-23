@@ -1,0 +1,28 @@
+# Development dependencies for AI Agent System
+
+# Core dependencies (from requirements.txt)
+Flask==2.3.3
+Flask-WTF==1.1.1
+pymongo==4.6.0
+python-dotenv==1.0.0
+Werkzeug==2.3.7
+
+# Testing dependencies
+pytest==7.4.0
+pytest-cov==4.1.0
+pytest-mock==3.11.1
+selenium==4.10.0
+locust==2.15.1
+
+# Security testing
+bandit==1.7.5
+safety==2.3.5
+
+# Code quality
+flake8==6.0.0
+black==23.3.0
+isort==5.12.0
+
+# Development tools
+ipython==8.14.0
+jupyter==1.0.0
